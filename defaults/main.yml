@@ -63,6 +63,14 @@ sudoers_files:
         commands:
           - "ALL"
       - users:
+          - "%sudo"
+        hosts:
+          - "ALL"
+        operators:
+          - "ALL"
+        commands:
+          - "ALL"
+      - users:
           - "%wheel"
         hosts:
           - "ALL"
@@ -70,6 +78,7 @@ sudoers_files:
           - "ALL"
         commands:
           - "ALL"
+
     include_directories:
       - "/etc/sudoers.d"
 # include_files: []
