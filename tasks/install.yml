@@ -11,9 +11,10 @@
   ansible.builtin.package:
     name: "sudo"
     state: "present"
-  retries: "3"
-  register: "sudo_installed"
-  until: "sudo_installed is succeeded"
+  register: pkg_result
+  retries: 12
+  delay: 10
+  until: pkg_result is success
   when: ansible_distribution != 'MacOSX'
   become: true
 
