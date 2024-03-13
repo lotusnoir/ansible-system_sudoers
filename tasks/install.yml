@@ -106,6 +106,10 @@
 
 # cleanup files in include_dirs that aren't listed in sudoers_files
 - name: "Remove unauthorized included sudoer files"
+  become: true
+  when:
+    - "sudoers_remove_unauthorized_included_files | bool"
+    - "sudoers_include_dirs | length > 0"
   block:
     - name: "Search for sudoer files in included directories"
       ansible.builtin.find:
@@ -131,7 +135,3 @@
         state: "absent"
       with_items: "{{ sudoers_unauthorized_files }}"
       when: "sudoers_unauthorized_files | length > 0"
-  become: true
-  when:
-    - "sudoers_remove_unauthorized_included_files | bool"
-    - "sudoers_include_dirs | length > 0"
