@@ -1,6 +1,6 @@
 ---
 skip_list:
-  - 'jinja[invalid]'
   - '106'
   - '401'
   - 'schema'
+  - jinja[invalid]
