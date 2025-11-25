@@ -36,8 +36,9 @@
     group: root
     mode: '0755'
   when:
-    - sucess_run_flag is defined
-    - sucess_run_flag | bool
+    - ansible_os_family in ["Debian", "RedHat"]
+    - success_run_flag is defined
+    - success_run_flag | bool
   tags: always
 
 - name: "Creation Successful run flag"
@@ -48,6 +49,7 @@
     group: root
     mode: '0644'
   when:
-    - sucess_run_flag is defined
-    - sucess_run_flag | bool
+    - ansible_os_family in ["Debian", "RedHat"]
+    - success_run_flag is defined
+    - success_run_flag | bool
   tags: always
