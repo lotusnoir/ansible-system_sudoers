@@ -4,7 +4,7 @@
     distribution_groups:
       MacOSX: wheel
   ansible.builtin.set_fact:
-    sudoers_root_group: "{{ distribution_groups[ansible_distribution] | default('root') }}"
+    sudoers_root_group: "{{ distribution_groups[ansible_facts.distribution] | default('root') }}"
   when: sudoers_root_group is not defined
 
 - name: "Ensure sudo is installed"
@@ -15,7 +15,7 @@
   retries: 12
   delay: 10
   until: __pkg_result is success
-  when: ansible_distribution != 'MacOSX'
+  when: ansible_facts.distribution != 'MacOSX'
   become: true
 
 - name: "Set include directories variable"
